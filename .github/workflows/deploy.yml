@@ -36,6 +36,9 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       
+      - name: Create 404.html for SPA routing
+        run: cp dist/index.html dist/404.html
+      
       - name: Setup Pages
         uses: actions/configure-pages@v4
       
