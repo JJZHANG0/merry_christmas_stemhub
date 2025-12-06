@@ -55,11 +55,31 @@ git push gitee HEAD:pages --force
 部署成功后，你的网站可以通过以下地址访问：
 - `https://jjzhang_iko.gitee.io/merry_christmas/`
 
+## Base Path 配置
+
+当前项目的 base path 配置为 `/merry_christmas_stemhub/`（GitHub 仓库名）。
+
+**对于 Gitee Pages：**
+- Gitee 仓库名是 `merry_christmas`
+- 如果 Gitee Pages 访问路径是 `https://jjzhang_iko.gitee.io/merry_christmas/`，则 base path 应该是 `/merry_christmas/`
+
+**解决方案：**
+
+1. **方法一：在 Gitee Pages 构建时设置环境变量**
+   - 构建命令：`VITE_BASE_PATH=/merry_christmas/ npm install && npm run build`
+
+2. **方法二：修改 vite.config.ts 中的 base path**
+   - 如果主要使用 Gitee，可以将 base path 改为 `/merry_christmas/`
+   - 或者创建两个不同的构建配置
+
+3. **方法三：使用根路径**
+   - 将 base path 改为 `/`，这样两个平台都可以使用
+
 ## 注意事项
 
 1. Gitee Pages 需要手动触发部署（免费版）
 2. 每次代码更新后，需要重新构建和部署
-3. 如果使用 base path `/merry_christmas_stemhub/`，需要确保 Gitee Pages 的路径配置正确
+3. 确保 base path 与 Gitee Pages 的访问路径匹配
 
 ## 同步更新
 
