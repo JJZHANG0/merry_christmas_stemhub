@@ -85,8 +85,8 @@ const calculateRotation = (landmarks: any[]): number => {
   return Math.atan2(p2.y - p1.y, p2.x - p1.x);
 };
 
-export const processVideoFrame = (video: HTMLVideoElement) => {
-  if (!handLandmarker || video.currentTime === lastVideoTime) return;
+export const processVideoFrame = (video: HTMLVideoElement): any[] | null => {
+  if (!handLandmarker || video.currentTime === lastVideoTime) return null;
 
   lastVideoTime = video.currentTime;
   const startTimeMs = performance.now();
@@ -110,7 +110,11 @@ export const processVideoFrame = (video: HTMLVideoElement) => {
       position: { x: 1 - palmX, y: palmY }, // Mirror X for natural feeling
       rotation,
     });
+
+    // Return landmarks for drawing
+    return landmarks;
   } else {
     setHandState({ isDetected: false, gesture: GestureType.NONE });
+    return null;
   }
 };
